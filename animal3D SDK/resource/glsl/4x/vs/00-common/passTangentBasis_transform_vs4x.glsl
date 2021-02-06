@@ -37,7 +37,7 @@
 //	-> assign texture coordinate to varying
 
 layout (location = 0) in vec4 aPosition;
-layout (location = 2) in vec4 aNormal;
+layout (location = 2) in vec3 aNormal;
 
 uniform mat4 uMV, uP, uMV_nrm;
 
