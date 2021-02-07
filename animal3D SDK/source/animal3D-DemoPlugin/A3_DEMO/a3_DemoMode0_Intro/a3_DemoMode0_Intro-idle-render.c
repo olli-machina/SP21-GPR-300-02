@@ -173,6 +173,7 @@ void a3intro_render(a3_DemoState const* demoState, a3_DemoMode0_Intro const* dem
 	a3mat4 projectionMatInv = activeCamera->projectorMatrixStackPtr->projectionMatInverse;
 	a3mat4 viewProjectionMat = activeCamera->projectorMatrixStackPtr->viewProjectionMat;
 	a3mat4 modelMat, modelViewMat, modelViewProjectionMat, atlasMat;
+	a3mat4 modelViewMatInverseTranspose; //added by us
 
 	// defaults
 	modelViewProjectionMat = viewProjectionMat;
@@ -260,14 +261,17 @@ void a3intro_render(a3_DemoState const* demoState, a3_DemoMode0_Intro const* dem
 			// send lights and matrices, fall through to texturing
 			modelViewMat = currentSceneObject->modelMatrixStackPtr->modelViewMat;
 			a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uMV, 1, modelViewMat.mm);
-			// ****TO-DO: 
+			// ****DONE: 
 			//	-> send "normal matrix": the inverse-transpose of the model-view matrix
 			//		(hint: the correct uniform location is in the shader header)
+			modelViewMatInverseTranspose = currentSceneObject->modelMatrixStackPtr->modelViewMatInverseTranspose;
+			a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uMV_nrm, 1, modelViewMatInverseTranspose.mm);
 
 		case intro_renderModeTexture:
 			// activate diffuse map, fall through to solid color
-			// ****TO-DO: 
+			// ****DONE: 
 			//	-> activate diffuse texture on texture unit 0
+			a3textureActivate(texture_dm[j], a3tex_unit00);
 
 		case intro_renderModeSolid:
 			// send general matrix and color, end
