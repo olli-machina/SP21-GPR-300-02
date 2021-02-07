@@ -236,6 +236,7 @@ void a3intro_render(a3_DemoState const* demoState, a3_DemoMode0_Intro const* dem
 
 	// ****TO-DO: 
 	//	-> send lighting uniforms and bind blocks where appropriate
+	a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uLightPos, 1, activeCameraObject->dataPtr->position.v);
 
 
 	// select pipeline algorithm
