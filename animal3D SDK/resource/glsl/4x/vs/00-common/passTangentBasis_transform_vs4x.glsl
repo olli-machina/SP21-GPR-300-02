@@ -38,6 +38,7 @@
 
 layout (location = 0) in vec4 aPosition;
 layout (location = 2) in vec3 aNormal;
+layout (location = 8) in vec2 aTexCoord;
 
 uniform mat4 uMV, uP, uMV_nrm;
 
@@ -46,6 +47,8 @@ flat out int vInstanceID;
 
 out vec4 vPosition;
 out vec4 vNormal;
+
+out vec2 vTexcoord;
 
 void main()
 {
@@ -61,4 +64,5 @@ void main()
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;
+	vTexcoord = aTexCoord;
 }

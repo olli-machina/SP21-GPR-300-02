@@ -31,9 +31,42 @@
 //	-> calculate Phong shading model for multiple lights
 
 layout (location = 0) out vec4 rtFragColor;
+in vec2 vTexcoord;
+
+in vec4 vPosition;
+in vec4 vNormal;
+
+uniform sampler2D uTex_dm;
+uniform sampler2D uTex_sm;
+uniform vec4 uColor;
+
+uniform vec4 uLightPos; // world/camera
+
+vec4 blendVectors(vec4 a, vec4 b);
+vec3 blendVectors(vec3 a, vec3 b);
 
 void main()
 {
-	// DUMMY OUTPUT: all fragments are OPAQUE GREEN
-	rtFragColor = vec4(0.0, 1.0, 0.0, 1.0);
+	
+	//diffuse coeff = dot(unit surface normal,
+	//						unit light vector)
+	vec4 N = normalize(vNormal);
+	vec4 L = normalize(uLightPos - vPosition);
+	float kd = dot(N,L);
+
+	vec4 tex = texture(uTex_dm, vTexcoord);
+
+	//DEBUGGING
+	//rtFragColor = vec4(kd, kd, kd, 1.0);
+
+	vec4 spec = texture(uTex_sm, vTexcoord);
+
+	vec4 colorTexture = blendVectors(tex, uColor);
+
+	vec4 light = vec4(kd, kd, kd, 1.0);
+	vec4 lightColorTexture = blendVectors(colorTexture, light);
+
+	vec4 specLightColorTexture = blendVectors(lightColorTexture, spec);
+
+	rtFragColor = specLightColorTexture;
 }

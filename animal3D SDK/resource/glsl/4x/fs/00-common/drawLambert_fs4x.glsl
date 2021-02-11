@@ -36,11 +36,18 @@
 //		(hint: there is another uniform for light count)
 
 layout (location = 0) out vec4 rtFragColor;
+in vec2 vTexcoord;
 
 in vec4 vPosition;
 in vec4 vNormal;
 
+uniform sampler2D uTex_dm;
+uniform vec4 uColor;
+
 uniform vec4 uLightPos; // world/camera
+
+vec4 blendVectors(vec4 a, vec4 b);
+vec3 blendVectors(vec3 a, vec3 b);
 
 void main()
 {
@@ -53,6 +60,13 @@ void main()
 	vec4 L = normalize(uLightPos - vPosition);
 	float kd = dot(N,L);
 
+	vec4 tex = texture(uTex_dm, vTexcoord);
+
 	//DEBUGGING
-	rtFragColor = vec4(kd, kd, kd, 1.0);
+	//rtFragColor = vec4(kd, kd, kd, 1.0);
+
+	vec4 colorTexture = blendVectors(tex, uColor);
+	vec4 light = vec4(kd, kd, kd, 1.0);
+
+	rtFragColor = blendVectors(colorTexture, light);
 }
