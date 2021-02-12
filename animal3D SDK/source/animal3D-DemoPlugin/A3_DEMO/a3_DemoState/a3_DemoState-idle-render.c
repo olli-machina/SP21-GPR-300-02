@@ -38,6 +38,7 @@
 #include <gl/glew.h>
 #include <Windows.h>
 #include <GL/GL.h>
+#include <math.h>
 #else	// !_WIN32
 #include <OpenGL/gl3.h>
 #endif	// _WIN32
@@ -198,9 +199,64 @@ void a3demo_renderTest(a3_DemoState const* demoState, a3f64 const dt)
 	// set viewport
 	glViewport(-demoState->frameBorder, -demoState->frameBorder, demoState->frameWidth, demoState->frameHeight);
 
-	// ****TO-DO: render scene here
+	// ****DONE: render scene here
 	//	-> implement "render" from tutorial
 
+	//red background
+	//static const GLfloat red[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	//glClearBufferfv(GL_COLOR, 0, red);
+
+	//rainbow shifting background
+	const GLfloat color[] = { 0.0f, 0.8f, 1.0f, 1.0f };
+	glClearBufferfv(GL_COLOR, 0, color);
+
+	GLuint vertex_shader;
+	GLuint fragment_shader;
+	GLuint program;
+
+	static const GLchar * vertex_shader_source[] =
+	{ "#version 450 core							\n"
+	  "												\n"
+	  "void main(void)								\n"
+	  "{											\n"
+	  "		gl_Position = vec4(0.0,0.0,0.5,1.0);	\n"
+	  "}											\n"
+	};
+
+	static const GLchar* fragment_shader_source[] =
+	{
+		"#version 450 core							\n"
+		"											\n"
+		"out vec4 color;							\n"
+		"											\n"
+		"void main(void)							\n"
+		"{											\n"
+		"		color = vec4(0.0,0.8,1.0,1.0);		\n"
+		"}											\n"
+	};
+
+
+	//vertex shader
+	vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertex_shader, 1, vertex_shader_source, NULL);
+	glCompileShader(vertex_shader);
+
+	//fragment shader
+	fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragment_shader, 1, fragment_shader_source, NULL);
+	glCompileShader(fragment_shader);
+
+	//create program, attach shaders, link it
+	program = glCreateProgram();
+	glAttachShader(program, vertex_shader);
+	glAttachShader(program, fragment_shader);
+	glLinkProgram(program);
+
+	//delete shaders
+	glDeleteShader(vertex_shader);
+	glDeleteShader(fragment_shader);
+
+	return program;
 }
 
 void a3demo_render(a3_DemoState const* demoState, a3f64 const dt)
