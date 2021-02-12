@@ -22,6 +22,14 @@
 	Calculate final position and pass atlas texture coordinate.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	passTexcoord_transform_vs4x.glsl
+	Calculate final position and pass atlas texture coordinate.
+*/
+
 #version 450
 
 // ****DONE: 

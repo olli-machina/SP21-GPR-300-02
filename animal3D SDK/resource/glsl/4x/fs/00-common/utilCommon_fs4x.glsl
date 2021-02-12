@@ -22,6 +22,14 @@
 	Common utilities for fragment shaders.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	utilCommon_fs4x.glsl
+	Common utilities for fragment shaders.
+*/
+
 vec4 blendVectors(vec4 a, vec4 b)
 {
 

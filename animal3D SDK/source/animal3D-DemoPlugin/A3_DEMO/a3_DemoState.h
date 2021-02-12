@@ -26,6 +26,18 @@
 	********************************************
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+
+	a3_DemoState.h
+	Uncommented blocks
+
+	********************************************
+	*** THIS IS YOUR DEMO'S MAIN HEADER FILE ***
+	********************************************
+*/
+
 #ifndef __ANIMAL3D_DEMOSTATE_H
 #define __ANIMAL3D_DEMOSTATE_H
 

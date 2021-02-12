@@ -22,6 +22,14 @@
 	Calculate and pass tangent basis.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	passTangentBasis_transform_vs4x.glsl
+	Calculate and pass tangent basis.
+*/
+
 #version 450
 
 // ****DONE: 

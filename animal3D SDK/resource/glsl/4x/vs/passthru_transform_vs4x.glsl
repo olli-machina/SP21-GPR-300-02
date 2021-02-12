@@ -22,6 +22,14 @@
 	Pass-thru GLSL vertex shader. Outputs transformed position attribute.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	passthru_transform_vs4x.glsl
+	Pass-thru GLSL vertex shader. Outputs transformed position attribute.
+*/
+
 #version 450
 
 // ****DONE: 

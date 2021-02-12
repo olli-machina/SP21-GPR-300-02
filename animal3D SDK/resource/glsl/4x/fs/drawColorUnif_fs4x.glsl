@@ -22,6 +22,14 @@
 	Draw uniform solid color.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	drawColorUnif_fs4x.glsl
+	Draw uniform solid color.
+*/
+
 #version 450
 
 // ****DONE: 

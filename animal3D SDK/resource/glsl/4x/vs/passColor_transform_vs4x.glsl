@@ -22,6 +22,14 @@
 	Transform position attribute and pass color attribute down the pipeline.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	passColor_transform_vs4x.glsl
+	Transform position attribute and pass color attribute down the pipeline.
+*/
+
 #version 450
 
 layout (location = 0) in vec4 aPosition;

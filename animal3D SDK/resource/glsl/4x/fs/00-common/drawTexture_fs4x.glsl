@@ -22,6 +22,14 @@
 	Output texture blended with color.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	drawTexture_fs4x.glsl
+	Output texture blended with color.
+*/
+
 #version 450
 
 // ****DONE: 

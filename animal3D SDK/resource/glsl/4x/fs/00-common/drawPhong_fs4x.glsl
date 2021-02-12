@@ -22,9 +22,17 @@
 	Output Phong shading.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	drawPhong_fs4x.glsl
+	Output Phong shading.
+*/
+
 #version 450
 
-// ****TO-DO: 
+// ****DONE: 
 //	-> start with list from "drawLambert_fs4x"
 //		(hint: can put common stuff in "utilCommon_fs4x" to avoid redundancy)
 //	-> calculate view vector, reflection vector and Phong coefficient

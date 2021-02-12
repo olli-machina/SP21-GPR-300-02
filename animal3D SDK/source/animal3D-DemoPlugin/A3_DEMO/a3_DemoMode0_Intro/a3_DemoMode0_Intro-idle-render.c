@@ -26,6 +26,18 @@
 	********************************************
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+
+	a3_DemoMode0_Intro-idle-render.c
+	Demo mode implementations: animation scene.
+
+	********************************************
+	*** RENDERING FOR ANIMATION SCENE MODE   ***
+	********************************************
+*/
+
 //-----------------------------------------------------------------------------
 
 #include "../a3_DemoMode0_Intro.h"

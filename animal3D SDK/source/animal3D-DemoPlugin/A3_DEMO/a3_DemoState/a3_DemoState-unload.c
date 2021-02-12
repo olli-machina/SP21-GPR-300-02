@@ -28,6 +28,20 @@
 	****************************************************
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+
+	a3_DemoState_unloading.c/.cpp
+	Demo state function implementations.
+
+	****************************************************
+	*** THIS IS ONE OF YOUR DEMO'S MAIN SOURCE FILES ***
+	*** Implement your demo logic pertaining to      ***
+	***     UNLOADING in this file.                  ***
+	****************************************************
+*/
+
 //-----------------------------------------------------------------------------
 
 #include "../a3_DemoState.h"

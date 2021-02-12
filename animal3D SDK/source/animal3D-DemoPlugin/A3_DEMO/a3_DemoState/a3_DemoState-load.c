@@ -28,6 +28,20 @@
 	****************************************************
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe
+
+	a3_DemoState_loading.c/.cpp
+	Demo state function implementations.
+
+	****************************************************
+	*** THIS IS ONE OF YOUR DEMO'S MAIN SOURCE FILES ***
+	*** Implement your demo logic pertaining to      ***
+	***     LOADING in this file.                    ***
+	****************************************************
+*/
+
 #include "../_a3_demo_utilities/a3_DemoMacros.h"
 
 

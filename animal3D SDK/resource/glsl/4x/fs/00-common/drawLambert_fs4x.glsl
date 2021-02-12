@@ -22,9 +22,17 @@
 	Output Lambertian shading.
 */
 
+/*
+	Project 1 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	drawLambert_fs4x.glsl
+	Output Lambertian shading.
+*/
+
 #version 450
 
-// ****TO-DO: 
+// ****DONE: 
 //	-> declare varyings to receive lighting and shading variables
 //	-> declare lighting uniforms
 //		(hint: in the render routine, consolidate lighting data 
