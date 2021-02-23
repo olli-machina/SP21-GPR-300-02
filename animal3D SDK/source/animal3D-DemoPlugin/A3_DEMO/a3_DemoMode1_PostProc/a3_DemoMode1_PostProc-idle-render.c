@@ -230,14 +230,24 @@ void a3postproc_render(a3_DemoState const* demoState, a3_DemoMode1_PostProc cons
 		1,
 	};
 
-	// ****TO-DO:
+	// ****DONE:
 	//	-> uncomment FBO target array
 	//	-> add pointer to target FBO for each pass
 	//		(hint: choose the most relevant one for each; all are unique)
 	// framebuffer target for each pass
 	const a3_Framebuffer* writeFBO[postproc_renderPass_max] = {
 		demoState->fbo_d32,
-		demoState->fbo_c16x4_d24s8, 
+		demoState->fbo_c16x4_d24s8,
+		demoState->fbo_c16_szHalf,
+		demoState->fbo_c16_szHalf,
+		demoState->fbo_c16_szHalf,
+		demoState->fbo_c16_szQuarter,
+		demoState->fbo_c16_szQuarter,
+		demoState->fbo_c16_szQuarter,
+		demoState->fbo_c16_szEighth,
+		demoState->fbo_c16_szEighth,
+		demoState->fbo_c16_szEighth,
+		demoState->fbo_c32f //Check for validity of order.
 		//...
 	};
 
@@ -420,6 +430,21 @@ void a3postproc_render(a3_DemoState const* demoState, a3_DemoMode1_PostProc cons
 	currentWriteFBO = writeFBO[postproc_renderPassBright2];
 	a3framebufferActivate(currentWriteFBO);
 	a3vertexDrawableRenderActive();
+
+	/*currentDemoProgram = demoState->prog_postBlur;
+	a3shaderProgramActivate(currentDemoProgram->program);
+	a3framebufferBindColorTexture(currentWriteFBO, a3tex_unit00, 1);
+	currentWriteFBO = writeFBO[postproc_renderPassBlurH2];
+	a3framebufferActivate(currentWriteFBO);
+	a3vertexDrawableRenderActive();
+	
+	currentDemoProgram = demoState->prog_postBlur;
+	a3shaderProgramActivate(currentDemoProgram->program);
+	a3framebufferBindColorTexture(currentWriteFBO, a3tex_unit00, 2);
+	currentWriteFBO = writeFBO[postproc_renderPassBlurV2];
+	a3framebufferActivate(currentWriteFBO);
+	a3vertexDrawableRenderActive();*/
+
 	//...
 
 
@@ -434,7 +459,7 @@ void a3postproc_render(a3_DemoState const* demoState, a3_DemoMode1_PostProc cons
 	a3framebufferDeactivateSetViewport(a3fbo_depthDisable,
 		-demoState->frameBorder, -demoState->frameBorder, demoState->frameWidth, demoState->frameHeight);
 
-	// ****TO-DO:
+	// ****DONE:
 	//	-> uncomment display FBO selection
 	// select framebuffer to display based on mode
 	currentDisplayFBO = writeFBO[renderPass];
