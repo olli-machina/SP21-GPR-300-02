@@ -26,9 +26,9 @@
 
 // ****TO-DO:
 // 1) core transformation and lighting setup:
-//	-> declare data structures for projector and model matrix stacks
+//	*-> declare data structures for projector and model matrix stacks
 //		(hint: copy and slightly modify demo object descriptors)
-//	-> declare uniform block for matrix data
+//	*-> declare uniform block for matrix data
 //		(hint: must match how it is uploaded in update function)
 //	-> use matrix data for current object to perform relevant transformations
 //		(hint: model-view-projection sequence may be split up like last time, 
@@ -48,6 +48,7 @@ flat out int vVertexID;
 flat out int vInstanceID;
 
 uniform int uIndex;
+uniform mat4 uMVP;
 
 // matrix stack for a viewer object
 struct sProjectorMatrixStack
