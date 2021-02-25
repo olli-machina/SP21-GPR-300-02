@@ -30,11 +30,11 @@
 //		(hint: copy and slightly modify demo object descriptors)
 //	*-> declare uniform block for matrix data
 //		(hint: must match how it is uploaded in update function)
-//	-> use matrix data for current object to perform relevant transformations
+//	*-> use matrix data for current object to perform relevant transformations
 //		(hint: model-view-projection sequence may be split up like last time, 
 //		but per usual the final clip-space result is assigned to gl_Position)
-//	-> declare relevant attributes for lighting
-//	-> perform any additional transformations and write varyings for lighting
+//	*-> declare relevant attributes for lighting
+//	*-> perform any additional transformations and write varyings for lighting
 // 2) shadow mapping
 //	-> using the above setup, perform additional transformation to generate a 
 //		"shadow coordinate", which is a "biased clip-space" coordinate from 
@@ -43,9 +43,15 @@
 //	-> declare and write varying for shadow coordinate
 
 layout (location = 0) in vec4 aPosition;
+layout (location = 2) in vec3 aNormal;
+layout (location = 8) in vec2 aTexCoord;
 
 flat out int vVertexID;
 flat out int vInstanceID;
+
+out vec4 vPosition;
+out vec4 vNormal;
+out vec2 vTexcoord;
 
 uniform int uIndex;
 uniform mat4 uMVP;
@@ -90,8 +96,13 @@ void main()
 {
 	// DUMMY OUTPUT: directly assign input position to output position
 	//gl_Position = aPosition;
+
+	vPosition = uModel[uIndex].modelViewMat * aPosition;
+	vNormal = vec4(aNormal, 0.0f);
+
 	gl_Position = uCamera.projectionMat * uModel[uIndex].modelViewMat * aPosition;
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;
+	vTexcoord = aTexCoord;
 }
