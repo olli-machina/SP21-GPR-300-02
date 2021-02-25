@@ -30,16 +30,18 @@
 //	-> declare Gaussian blur function that samples along one axis
 //		(hint: the efficiency of this is described in class)
 
-in vec2 vTexcoord;
+in vec4 vTexcoord_atlas;
 
 uniform vec2 uAxis;
+
+uniform sampler2D inputTex;
 
 layout (location = 0) out vec4 rtFragColor;
 
 void main()
 {
 	// DUMMY OUTPUT: all fragments are OPAQUE AQUA
-	rtFragColor = vec4(0.0, 1.0, 0.5, 1.0);
+	
 
 	//blurring along an axis:
 	// -> sample neighboring pixels, output weighted average
@@ -47,4 +49,38 @@ void main()
 	// ---------> example: horizontal, dv = vec2(1.0 / resolution (width), 0.0)
 	// ---------> example: vertical, dv = vec2(0.0, 1.0 / resoluction (height))
 	// 1/uv = resolution
+
+	vec2 vTexcoord = vTexcoord_atlas.xy;
+
+	float[5] weight = float[](1.0/16.0, 4.0/16.0, 6.0/16.0, 4.0/16.0, 1.0/16.0);
+
+	vec2 textureOff = 1.0 / textureSize( inputTex, 0);
+	vec3 finalImage = texture(inputTex, vTexcoord).rgb * weight[2];
+
+	if(uAxis.x == 1.0)
+	{
+
+		for(int i = 1; i <= 2; i++)
+		{
+
+			finalImage += texture(inputTex, vTexcoord + vec2(textureOff.x * i, 0.0)).rgb * weight[2+i];
+			finalImage += texture(inputTex, vTexcoord - vec2(textureOff.x * i, 0.0)).rgb * weight[2-i];
+
+		}
+
+	}
+	else if(uAxis.y == 1.0)
+	{
+
+		for(int i = 1; i <= 2; i++)
+		{
+
+			finalImage += texture(inputTex, vTexcoord + vec2(0.0, textureOff.y * i)).rgb * weight[2+i];
+			finalImage += texture(inputTex, vTexcoord - vec2(0.0, textureOff.y * i)).rgb * weight[2-i];
+
+		}
+
+	}
+
+	rtFragColor = vec4(finalImage, 1.0);
 }
