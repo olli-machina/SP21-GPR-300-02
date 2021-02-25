@@ -107,5 +107,6 @@ void main()
 	vInstanceID = gl_InstanceID;
 	vTexcoord = aTexCoord;
 
-	vShadow = uLight.projectionBiasMat * vPosition;
+	//vShadow = uLight.projectionBiasMat * vPosition;
+	vShadow = uLight.viewProjectionBiasMat * uModel[uIndex].modelMat * aPosition;
 }
