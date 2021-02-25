@@ -24,7 +24,7 @@
 
 #version 450
 
-// ****TO-DO:
+// ****DONE:
 // 1) core transformation and lighting setup:
 //	*-> declare data structures for projector and model matrix stacks
 //		(hint: copy and slightly modify demo object descriptors)
@@ -36,11 +36,11 @@
 //	*-> declare relevant attributes for lighting
 //	*-> perform any additional transformations and write varyings for lighting
 // 2) shadow mapping
-//	-> using the above setup, perform additional transformation to generate a 
+//	*-> using the above setup, perform additional transformation to generate a 
 //		"shadow coordinate", which is a "biased clip-space" coordinate from 
 //		the light's point of view
 //		(hint: transformation sequence is model-view-projection-bias)
-//	-> declare and write varying for shadow coordinate
+//	*-> declare and write varying for shadow coordinate
 
 layout (location = 0) in vec4 aPosition;
 layout (location = 2) in vec3 aNormal;
@@ -52,6 +52,7 @@ flat out int vInstanceID;
 out vec4 vPosition;
 out vec4 vNormal;
 out vec2 vTexcoord;
+out vec4 vShadow;
 
 uniform int uIndex;
 uniform mat4 uMVP;
@@ -98,11 +99,13 @@ void main()
 	//gl_Position = aPosition;
 
 	vPosition = uModel[uIndex].modelViewMat * aPosition;
-	vNormal = vec4(aNormal, 0.0f);
+	vNormal = uModel[uIndex].modelViewMatInverseTranspose * vec4(aNormal, 0.0f);
 
 	gl_Position = uCamera.projectionMat * uModel[uIndex].modelViewMat * aPosition;
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;
 	vTexcoord = aTexCoord;
+
+	vShadow = uLight.projectionBiasMat * vPosition;
 }
