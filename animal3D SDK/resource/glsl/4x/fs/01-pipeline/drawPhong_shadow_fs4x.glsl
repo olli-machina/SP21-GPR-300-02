@@ -67,7 +67,7 @@ void main()
 
 	//Test to see if it's in shadow
 	float shadowSample = texture2D(uTex_shadow, projScreen.xy).r;
-	bool fragIsShadowed = (L.z > (shadowSample + 0.0025));
+	bool fragIsShadowed = (projScreen.z > (shadowSample + 0.0025));
 
 	if(fragIsShadowed)
 		kd *= 0.2;
