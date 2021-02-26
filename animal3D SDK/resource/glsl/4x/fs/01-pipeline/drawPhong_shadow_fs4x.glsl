@@ -22,9 +22,17 @@
 	Output Phong shading with shadow mapping.
 */
 
+/*
+	animal3D SDK: Project 2 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	drawPhong_shadow_fs4x.glsl
+	Output Phong shading with shadow mapping.
+*/
+
 #version 450
 
-// ****TO-DO:
+// ****DONE:
 // 1) Phong shading
 //	*-> identical to outcome of last project
 // 2) shadow mapping

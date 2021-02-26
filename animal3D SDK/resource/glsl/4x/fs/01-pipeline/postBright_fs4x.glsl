@@ -22,9 +22,17 @@
 	Bright pass filter.
 */
 
+/*
+	animal3D SDK: Projects 2 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	postBright_fs4x.glsl
+	Bright pass filter.
+*/
+
 #version 450
 
-// ****TO-DO:
+// ****DONE:
 //	*-> declare texture coordinate varying and input texture
 //	*-> implement relative luminance function
 //	-> implement simple "tone mapping" such that the brightest areas of the 
@@ -32,8 +40,7 @@
 
 layout (location = 0) out vec4 rtFragColor;
 
-//in vec4 vTexcoord_atlas;???
-//in vec2 vTexcoord;???
+
 
 uniform sampler2D inputTex;
 

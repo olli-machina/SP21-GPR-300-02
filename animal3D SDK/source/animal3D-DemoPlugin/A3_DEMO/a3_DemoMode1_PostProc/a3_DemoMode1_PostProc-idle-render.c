@@ -26,6 +26,18 @@
 	********************************************
 */
 
+/*
+	animal3D SDK: Project 2 Edits
+	By Brandon L'Abbe & Olli Machina
+
+	a3_DemoMode1_PostProc-idle-render.c
+	Demo mode implementations: animation scene.
+
+	********************************************
+	*** RENDERING FOR ANIMATION SCENE MODE   ***
+	********************************************
+*/
+
 //-----------------------------------------------------------------------------
 
 #include "../a3_DemoMode1_PostProc.h"

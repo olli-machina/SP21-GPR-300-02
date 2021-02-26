@@ -26,6 +26,18 @@
 	********************************************
 */
 
+/*
+	animal3D SDK: Project 2 Edits
+	By Brandon L'Abbe & Olli Machina
+
+	a3_DemoState.h
+	Demo state interface and programmer function declarations.
+
+	********************************************
+	*** THIS IS YOUR DEMO'S MAIN HEADER FILE ***
+	********************************************
+*/
+
 #ifndef __ANIMAL3D_DEMOSTATE_H
 #define __ANIMAL3D_DEMOSTATE_H
 

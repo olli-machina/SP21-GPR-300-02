@@ -22,6 +22,14 @@
 	Calculate and pass tangent basis, and shadow coordinate.
 */
 
+/*
+	animal3D SDK: Project 2 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	passTangentBasis_shadowCoord_transform_vs4x.glsl
+	Calculate and pass tangent basis, and shadow coordinate.
+*/
+
 #version 450
 
 // ****DONE:

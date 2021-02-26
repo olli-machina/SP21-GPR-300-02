@@ -22,9 +22,17 @@
 	Gaussian blur.
 */
 
+/*
+	animal3D SDK: Project 2 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	postBlur_fs4x.glsl
+	Gaussian blur.
+*/
+
 #version 450
 
-// ****TO-DO:
+// ****DONE:
 //	-> declare texture coordinate varying and input texture
 //	-> declare sampling axis uniform (see render code for clue)
 //	-> declare Gaussian blur function that samples along one axis

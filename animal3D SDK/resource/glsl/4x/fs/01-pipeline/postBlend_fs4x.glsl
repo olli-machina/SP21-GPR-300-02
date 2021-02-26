@@ -22,17 +22,38 @@
 	Blending layers, composition.
 */
 
+/*
+	animal3D SDK: Project 2 Edits
+	By Brandon L'Abbe & Olli Machina
+	
+	postBlend_fs4x.glsl
+	Blending layers, composition.
+*/
+
 #version 450
 
-// ****TO-DO:
+// ****DONE:
 //	-> declare texture coordinate varying and set of input textures
 //	-> implement some sort of blending algorithm that highlights bright areas
 //		(hint: research some Photoshop blend modes)
 
 layout (location = 0) out vec4 rtFragColor;
 
+in vec4 vTexcoord_atlas;
+
+uniform sampler2D uImage00;
+uniform sampler2D uImage01;
+uniform sampler2D uImage02;
+uniform sampler2D uImage03;
+
 void main()
 {
-	// DUMMY OUTPUT: all fragments are OPAQUE PURPLE
-	rtFragColor = vec4(0.5, 0.0, 1.0, 1.0);
+
+	
+	vec4 tex4 = texture(uImage00, vTexcoord_atlas.xy);
+	vec4 tex3 = texture(uImage01, vTexcoord_atlas.xy);
+	vec4 tex2 = texture(uImage02, vTexcoord_atlas.xy);
+	vec4 tex1 = texture(uImage03, vTexcoord_atlas.xy);
+
+	rtFragColor = tex1 + tex2 + tex3 + tex4;
 }
