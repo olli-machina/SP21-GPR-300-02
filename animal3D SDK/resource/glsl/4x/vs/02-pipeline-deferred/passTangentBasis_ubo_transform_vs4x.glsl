@@ -38,6 +38,8 @@
 layout (location = 0) in vec4 aPosition;
 layout (location = 2) in vec3 aNormal;
 layout (location = 8) in vec4 aTexcoord;
+layout (location = 10) in vec4 aTangent;
+layout (location = 11) in vec4 aBiTtangent;
 
 struct sModelMatrixStack
 {

@@ -41,13 +41,14 @@
 
 void a3ssfx_update_graphics(a3_DemoState* demoState, a3_DemoMode2_SSFX* demoMode)
 {
-	// ****TO-DO:
+	// ****DONE:
 	//	-> *uncomment transformation and light data uploads
 	//	-> add line to upload light transformations
 	//		(hint: just individual matrices, see scene update)
 	// upload
 	a3bufferRefillOffset(demoState->ubo_transform, 0, 0, sizeof(demoMode->modelMatrixStack), demoMode->modelMatrixStack);
 	a3bufferRefillOffset(demoState->ubo_light, 0, 0, sizeof(demoMode->pointLightData), demoMode->pointLightData);
+	a3bufferRefillOffset(demoState->ubo_mvp, 0, 0, sizeof(demoMode->pointLightMVP), demoMode->pointLightMVP);
 	//...
 }
 
@@ -123,13 +124,24 @@ void a3ssfx_update_scene(a3_DemoState* demoState, a3_DemoMode2_SSFX* demoMode, a
 			projector->sceneObjectPtr->modelMatrixStackPtr->modelMatInverse.m,
 			pointLightData->worldPos.v);
 
-		// ****TO-DO:
+		// ****DONE?:
 		//	-> calculate light transformation
 		//		(hint: in the previous line, we calculate the view-space position)
 		//		(hint: determine the scale part, append position and multiply by 
 		//			projection matrix to arrive at a proper MVP for each light)
 		// update and transform light matrix
 		//...
+
+		//create matrix for scale and to append position
+		a3mat4 transformation = { 2.0 * pointLightData->radius, 0.0, 0.0, pointLightData->position.v[0],
+										0.0, 2.0 * pointLightData->radius, 0.0, pointLightData->position.v[1],
+										0.0, 0.0, 2.0 * pointLightData->radius, pointLightData->position.v[2],
+										0.0, 0.0, 0.0, 1.0 };
+		
+		//multiply by the projection matrix to get MVP
+		a3real4Real4x4Product(pointLightMVP->m,
+			projector->projectorMatrixStackPtr->projectionMat.m,
+			transformation.m);
 	}
 }
 
