@@ -348,16 +348,22 @@ void a3ssfx_render(a3_DemoState const* demoState, a3_DemoMode2_SSFX const* demoM
 		//	-> draw many inverted instances of the unit sphere model (because 
 		//		point lights are spheres), and using additive blending
 
-		currentDemoProgram = demoState->prog_drawColorUnif;
+		currentDemoProgram = demoState->prog_drawPhongPointLight_instanced;
 		a3shaderProgramActivate(currentDemoProgram->program);
-		a3vertexDrawableActivate(demoState->draw_unit_sphere);
+
+		
+		//a3vertexDrawableActivate(demoState->draw_unit_sphere);
+
+		a3vertexDrawableActivateAndRenderInstanced(demoState->draw_unit_sphere, ssfxMaxCount_pointLight); //USE THIS SOMEHOW
+
+		/*
 		a3real4x4SetScale(modelMat.m, 0.25f);
 		for (i = 0; i < postprocMaxCount_pointLight; ++i)
 		{
 			modelMat.v3 = demoMode->pointLightData[i].worldPos;
 			a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, demoMode->pointLightData[i].color.v);
 			a3demo_drawModelSimple(modelViewProjectionMat.m, viewProjectionMat.m, modelMat.m, currentDemoProgram);
-		}
+		}*/
 	}
 
 
@@ -409,10 +415,12 @@ void a3ssfx_render(a3_DemoState const* demoState, a3_DemoMode2_SSFX const* demoM
 		a3textureActivate(demoState->tex_atlas_dm, a3tex_unit00); // diffuse texture atlas
 		a3framebufferBindColorTexture(demoState->fbo_c16x4_d24s8, a3tex_unit04, 0); //texcoord
 		a3framebufferBindColorTexture(demoState->fbo_c16x4_d24s8, a3tex_unit05, 1); //normal
-		a3framebufferBindColorTexture(demoState->fbo_c16x4_d24s8, a3tex_unit06, 3); // position
+		//a3framebufferBindColorTexture(demoState->fbo_c16x4_d24s8, a3tex_unit06, 3); // position
 		a3framebufferBindDepthTexture(demoState->fbo_c16x4_d24s8, a3tex_unit07); //depth
+
+
 		a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uPB_inv, 1, projectionBiasMatInv.m);
-	
+
 		a3shaderUniformBufferActivate(demoState->ubo_transform, demoProg_blockTransformStack);
 		a3shaderUniformBufferActivate(demoState->ubo_light, demoProg_blockLight);
 		a3shaderUniformSendInt(a3unif_single, currentDemoProgram->uCount, 1, renderModeLightCount + renderMode);
@@ -424,7 +432,7 @@ void a3ssfx_render(a3_DemoState const* demoState, a3_DemoMode2_SSFX const* demoM
 		//	-> activate pertinent textures for deferred lighting composition
 		//		(hint: all outputs from previous passes)
 		// deferred lighting composite
-		//	- simple composition: multiply lighting colors by respective texture sample
+		//	- simple composition: multiply lighting colors by respective texture sample 
 		currentDemoProgram = demoState->prog_postDeferredLightingComposite;
 		a3shaderProgramActivate(currentDemoProgram->program);
 		a3textureActivate(demoState->tex_atlas_dm, a3tex_unit00); // diffuse texture atlas

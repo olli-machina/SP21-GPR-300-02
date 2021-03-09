@@ -39,7 +39,7 @@
 //		back to view-space, perspective divide)
 //	-> calculate and accumulate final diffuse and specular shading
 
-in vec4 vTexcoord_atlas;
+in vec4 vTexcoord_atlas; //also maps to screen Position 
 
 uniform int uCount;
 
@@ -51,6 +51,8 @@ uniform sampler2D uImage04; //texcoord g-buffer
 uniform sampler2D uImage05; //normal g-buffer
 //uniform sampler2D uImage06; //position g-buffer
 uniform sampler2D uImage07; //depth g-buffer
+
+uniform mat4 uPB_inv; //inverse Bias Projection
 
 //testing
 //uniform sampler2D uImage02, uImage03; // nrm, ht
@@ -67,6 +69,16 @@ void main()
 	vec4 diffuseSample = texture(uImage00, sceneTexcoord.xy);
 	vec4 specularSample = texture(uImage01, vTexcoord_atlas.xy);
 
+	vec4 position_screen = vTexcoord_atlas;
+	position_screen.z = texture(uImage07, vTexcoord_atlas.xy).x;
+
+	vec4 position_view = position_screen * uPB_inv;
+	position_view /= position_view.w;
+
+	vec4 normal = texture(uImage05, vTexcoord_atlas.xy);
+	normal -= 0.5;
+	normal *= 2.0; //Undoes normal compression
+
 	// Phong shading:
 	// abient
 	// + diffuse color * diffuse light
@@ -81,4 +93,8 @@ void main()
 
 	// DEBUGGING
 	rtFragColor = diffuseSample;
+	rtFragColor = position_screen;
+
+	// final transparency
+	rtFragColor.a = diffuseSample.a;
 }
