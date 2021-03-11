@@ -27,9 +27,9 @@
 #define MAX_LIGHTS 1024
 
 // ****TO-DO:
-//	-> declare view-space varyings from vertex shader
-//	-> declare point light data structure and uniform block
-//	-> declare uniform samplers (diffuse, specular & normal maps)
+//	-> *declare view-space varyings from vertex shader
+//	-> *declare point light data structure and uniform block
+//	-> *declare uniform samplers (diffuse, specular & normal maps)
 //	-> calculate final normal by transforming normal map sample
 //	-> calculate common view vector
 //	-> declare lighting sums (diffuse, specular), initialized to zero
@@ -39,6 +39,10 @@
 uniform int uCount;
 
 layout (location = 0) out vec4 rtFragColor;
+
+uniform sampler2D uImage00; // diffuse atlas
+uniform sampler2D uImage01; // specular atlas
+uniform sampler2D uImage02; //normal map
 
 // location of viewer in its own space is the origin
 const vec4 kEyePos_view = vec4(0.0, 0.0, 0.0, 1.0);
@@ -60,8 +64,39 @@ void calcPhongPoint(
 	in vec4 lightPos, in vec4 lightRadiusInfo, in vec4 lightColor
 );
 
+in vec4 vPosition;
+in vec4 vNormal;
+in vec4 vTexcoord;
+in vec4 vTangent;
+in vec4 vBitangent;
+
+struct sLightDataStack
+{
+	vec4 position;				//position in rendering target space
+	vec4 worldPos;				//original position in world space
+	vec4 color;					//RGB color with padding
+	float radius;				//radius (distance of effect from center)
+	float radiusSq;				//radius squared (if needed)
+	float radiusInv;			//radius inverse (attenuation factor)
+	float radiusInvSq;			//radius inverse squared (attenuation factor)
+};
+
+uniform ubLight //check this later
+{
+	sLightDataStack uLightDataStack[MAX_LIGHTS];
+};
+
 void main()
 {
 	// DUMMY OUTPUT: all fragments are OPAQUE MAGENTA
-	rtFragColor = vec4(1.0, 0.0, 1.0, 1.0);
+	//rtFragColor = vec4(1.0, 0.0, 1.0, 1.0);
+	vec4 newNormal = vNormal;
+	newNormal[3] = 1.0;
+
+	vec4 normal = texture(uImage02, vTexcoord.xy)*normalize(vNormal);
+//	normal -= 0.5;
+//	normal *= 2.0; //Undoes normal compression
+	normal[3] = 1.0;
+
+	rtFragColor = normal;
 }

@@ -133,13 +133,13 @@ void a3ssfx_update_scene(a3_DemoState* demoState, a3_DemoMode2_SSFX* demoMode, a
 		//...
 
 		//create matrix for scale and to append position
-		a3mat4 transformation = { 2.0 * pointLightData->radius, 0.0, 0.0, pointLightData->position.v[0],
-										0.0, 2.0 * pointLightData->radius, 0.0, pointLightData->position.v[1],
-										0.0, 0.0, 2.0 * pointLightData->radius, pointLightData->position.v[2],
-										0.0, 0.0, 0.0, 1.0 };
+		a3mat4 transformation = { 2.0f * pointLightData->radius, 0.0f, 0.0f, pointLightData->position.v[0],
+										0.0f, 2.0f * pointLightData->radius, 0.0f, pointLightData->position.v[1],
+										0.0f, 0.0f, 2.0f * pointLightData->radius, pointLightData->position.v[2],
+										0.0f, 0.0f, 0.0f, 1.0f };
 		
 		//multiply by the projection matrix to get MVP
-		a3real4Real4x4Product(pointLightMVP->m,
+		a3real4x4Product(pointLightMVP->m,
 			projector->projectorMatrixStackPtr->projectionMat.m,
 			transformation.m);
 	}

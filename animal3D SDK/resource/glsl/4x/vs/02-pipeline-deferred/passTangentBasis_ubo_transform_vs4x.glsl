@@ -26,12 +26,12 @@
 
 #define MAX_OBJECTS 128
 
-// ****TO-DO:
-//	-> declare attributes related to lighting
+// ****DONE:
+//	-> *declare attributes related to lighting
 //		(hint: normal [2], texcoord [8], tangent [10], bitangent [11])
-//	-> declare view-space varyings related to lighting
+//	-> ?declare view-space varyings related to lighting
 //		(hint: one per attribute)
-//	-> calculate final clip-space position and view-space varyings
+//	-> *calculate final clip-space position and view-space varyings -> is this already done?
 //		(hint: complete tangent basis [TBNP] transformed to view-space)
 //		(hint: texcoord transformed to atlas coordinates in a similar fashion)
 
@@ -39,7 +39,7 @@ layout (location = 0) in vec4 aPosition;
 layout (location = 2) in vec3 aNormal;
 layout (location = 8) in vec4 aTexcoord;
 layout (location = 10) in vec4 aTangent;
-layout (location = 11) in vec4 aBiTtangent;
+layout (location = 11) in vec4 aBitangent;
 
 struct sModelMatrixStack
 {
@@ -64,6 +64,8 @@ flat out int vInstanceID;
 out vec4 vPosition;
 out vec4 vNormal;
 out vec4 vTexcoord; 
+out vec4 vTangent;//?
+out vec4 vBitangent;//?
 
 out vec4 vPosition_screen;
 

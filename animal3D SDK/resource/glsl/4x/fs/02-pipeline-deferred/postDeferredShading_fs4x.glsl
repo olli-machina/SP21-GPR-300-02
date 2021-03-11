@@ -49,7 +49,7 @@ uniform sampler2D uImage01; // specular atlas
 
 uniform sampler2D uImage04; //texcoord g-buffer
 uniform sampler2D uImage05; //normal g-buffer
-//uniform sampler2D uImage06; //position g-buffer
+//uniform sampler2D uImage06; //position g-buffer ---> watch this in case he being sneaky again...
 uniform sampler2D uImage07; //depth g-buffer
 
 uniform mat4 uPB_inv; //inverse Bias Projection
@@ -93,7 +93,7 @@ void main()
 
 	// DEBUGGING
 	rtFragColor = diffuseSample;
-	rtFragColor = position_screen;
+	rtFragColor = normal;//position_screen;
 
 	// final transparency
 	rtFragColor.a = diffuseSample.a;
