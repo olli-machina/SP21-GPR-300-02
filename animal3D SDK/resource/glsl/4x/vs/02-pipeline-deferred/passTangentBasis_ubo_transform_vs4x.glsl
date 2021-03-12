@@ -22,6 +22,14 @@
 	Calculate and pass tangent basis using uniform buffers.
 */
 
+/*
+	Project 3 changes
+	By Brandon L'Abbe and Olli Machina
+	
+	passTangentBasis_ubo_transform_vs4x.glsl
+	Calculate and pass tangent basis using uniform buffers.
+*/
+
 #version 450
 
 #define MAX_OBJECTS 128
@@ -31,7 +39,7 @@
 //		(hint: normal [2], texcoord [8], tangent [10], bitangent [11])
 //	-> ?declare view-space varyings related to lighting
 //		(hint: one per attribute)
-//	-> *calculate final clip-space position and view-space varyings -> is this already done?
+//	-> *calculate final clip-space position and view-space varyings
 //		(hint: complete tangent basis [TBNP] transformed to view-space)
 //		(hint: texcoord transformed to atlas coordinates in a similar fashion)
 
