@@ -26,6 +26,18 @@
 	********************************************
 */
 
+/*
+	Project 3 edits
+	By Brandon L'Abbe and Olli Machina
+
+	a3_DemoMode2_SSFX-idle-render.c
+	Demo mode implementations: animation scene.
+
+	********************************************
+	*** RENDERING FOR ANIMATION SCENE MODE   ***
+	********************************************
+*/
+
 //-----------------------------------------------------------------------------
 
 #include "../a3_DemoMode2_SSFX.h"

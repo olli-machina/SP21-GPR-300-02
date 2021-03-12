@@ -22,10 +22,18 @@
 	Output g-buffers for use in future passes.
 */
 
+/*
+	Project 3 edits
+	By Brandon L'Abbe and Olli Machina
+	
+	drawGBuffers_fs4x.glsl
+	Output g-buffers for use in future passes.
+*/
+
 #version 450
 
-// ****TO-DO:
-//	-> declare view-space varyings from vertex shader
+// ****TO-DO?:
+//	-> *declare view-space varyings from vertex shader
 //	-> declare MRT for pertinent surface data (incoming attribute info)
 //		(hint: at least normal and texcoord are needed)
 //	-> declare uniform samplers (at least normal map)
