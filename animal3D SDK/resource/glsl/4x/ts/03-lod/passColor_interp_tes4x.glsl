@@ -31,11 +31,31 @@
 
 layout (isolines, equal_spacing) in;
 
+uniform ubCurve
+{
+	vec4 uCurveWaypoint[32];
+	vec4 uCurveTangent[32];
+};
+
+uniform int uCount;
+
 uniform mat4 uP;
 
 out vec4 vColor;
 
 void main()
 {
-	
+	int i0 = gl_PrimitiveID;
+	int i1 = (i0 + 1) % uCount;
+	float t = gl_TessCoord.x;
+	vec4 p = mix(
+				uCurveWaypoint[i0],
+				uCurveTangent[i1],
+				t
+	); // LERP
+	//vec4 p = vec4(gl_TessCoord.xy, -1.0, 1.0);
+
+	gl_Position = uP * p;
+
+	vColor = vec4(0.5, 0.5, gl_TessCoord[0], 1.0);
 }

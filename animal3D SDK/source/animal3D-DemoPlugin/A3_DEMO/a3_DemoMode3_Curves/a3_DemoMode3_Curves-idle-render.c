@@ -117,7 +117,11 @@ a3ret a3vertexDrawableRenderIsoPatches(a3ui32 const count)
 		//	-> disable anything that would result in a VAO, VBO and/or IBO based render
 		//	-> invoke rendering enough vertices to cover all path segments
 		// force isoline patches
+		float const tessLevelOuter[4] = { 1.0f, 1.0f, 1.0f, 1.0f }, tessLevelInner[2] = { 1.0f,1.0f };
 		glPatchParameteri(GL_PATCH_VERTICES, 2); //tell openGL we are drawing lines | define what a patch is
+		glPatchParameterfv(GL_PATCH_DEFAULT_OUTER_LEVEL, tessLevelOuter);
+		glPatchParameterfv(GL_PATCH_DEFAULT_INNER_LEVEL, tessLevelInner);
+
 		glBindVertexArray(0); //turn off geometry
 		glBindBuffer(GL_ARRAY_BUFFER, 0);//turn off bound buffers for safety
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
