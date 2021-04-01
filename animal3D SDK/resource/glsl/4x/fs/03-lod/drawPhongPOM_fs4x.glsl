@@ -60,10 +60,19 @@ void calcPhongPoint(out vec4 diffuseColor, out vec4 specularColor, in vec4 eyeVe
 	
 vec3 calcParallaxCoord(in vec3 coord, in vec3 viewVec, const int steps)
 {
-	// ****TO-DO:
+	// ****TO-DO: needs work
 	//	-> step along view vector until intersecting height map
 	//	-> determine precise intersection point, return resulting coordinate
 	
+	float n = float(steps);
+	float dt = 1/n;
+	for(int i = 0; i<n; i++)
+	{
+
+		vec3 ct = mix(coord, viewVec, i*dt);
+		// if bh > ct.z then return that point
+	}
+
 	// done
 	return coord;
 }

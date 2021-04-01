@@ -24,6 +24,11 @@
 
 #version 450
 
+in vbVertexData {
+	mat4 vTangentBasis_view;
+	vec4 vTexcoord_atlas;
+};
+
 layout (location = 0) out vec4 rtFragColor;
 
 void main()

@@ -47,7 +47,7 @@ out vbVertexData {
 
 void main()
 {
-	//gl_Position = ???
-	//vbVertexData = vbVertexData_tess;??
+	//gl_Position = ??
+	//vbVertexData = vbVertexData_tess[0];//??
 
 }

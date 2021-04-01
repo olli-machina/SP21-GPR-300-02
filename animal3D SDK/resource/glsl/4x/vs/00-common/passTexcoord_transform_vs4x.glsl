@@ -29,6 +29,8 @@ layout (location = 0) in vec4 aPosition;
 flat out int vVertexID;
 flat out int vInstanceID;
 
+out vec2 vTexcoord_atlas;
+
 void main()
 {
 	// DUMMY OUTPUT: directly assign input position to output position

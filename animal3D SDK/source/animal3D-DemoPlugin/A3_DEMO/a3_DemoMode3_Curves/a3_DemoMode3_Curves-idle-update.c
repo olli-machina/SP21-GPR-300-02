@@ -59,7 +59,25 @@ void a3curves_update_animation(a3_DemoState* demoState, a3_DemoMode3_Curves* dem
 		//	-> update the animation timer
 		//		(hint: check if we've surpassed the segment's duration)
 		// teapot follows curved path
+		//demoState->tim
+		demoMode->curveSegmentTime += (a3f32)dt;
+		if (demoMode->curveSegmentTime > demoMode->curveSegmentDuration)
+		{
+			demoMode->curveSegmentDuration -= (a3f32)dt;
+			demoMode->curveSegmentIndex++;
+		}
 
+		
+
+		a3mat4 translationMat = {
+			1.0, 0.0, 0.0, demoMode->curveTangent[demoMode->curveSegmentIndex].v0,
+			0.0, 1.0, 0.0, demoMode->curveTangent[demoMode->curveSegmentIndex].v1,
+			0.0, 0.0, 1.0, demoMode->curveTangent[demoMode->curveSegmentIndex].v2,
+			0.0, 0.0, 0.0, 1.0
+		};
+
+		sceneObjectData->position = translationMat * sceneObjectData->position.v;
+		
 	}
 }
 
