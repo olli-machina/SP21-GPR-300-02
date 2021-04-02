@@ -1,0 +1,5 @@
+# Project 4- Intro to Interpolation, Tessellation, & Geometry Shaders
+
+Download and run LAUNCH_VS_GL.bat
+Run program and play Demo to see teapot move on track
+This assignment is used to display Interpolation of animations, as well as the improvements to previous projects using tessellation and geometry shaders.
