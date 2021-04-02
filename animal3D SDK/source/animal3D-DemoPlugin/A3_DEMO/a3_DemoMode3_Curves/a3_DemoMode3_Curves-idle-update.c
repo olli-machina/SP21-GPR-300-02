@@ -75,9 +75,11 @@ void a3curves_update_animation(a3_DemoState* demoState, a3_DemoMode3_Curves* dem
 			0.0, 0.0, 1.0, demoMode->curveTangent[demoMode->curveSegmentIndex].v2,
 			0.0, 0.0, 0.0, 1.0
 		};
+		a3vec4 newPositionVec;
 
-		sceneObjectData->position = translationMat * sceneObjectData->position.v;
-		
+		//a3real4x4Product(newPositionVec.v,  translationMat.m, sceneObjectData->position.v);
+		a3real4Real4x4ProductL(newPositionVec.v, sceneObjectData->position.v, translationMat.m);
+		sceneObjectData->position = newPositionVec;
 	}
 }
 

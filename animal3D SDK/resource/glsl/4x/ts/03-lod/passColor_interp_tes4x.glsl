@@ -25,7 +25,7 @@
 #version 450
 
 // ****TO-DO: 
-//	-> declare uniform block for spline waypoint and handle data
+//	-> ?declare uniform block for spline waypoint and handle data
 //	-> implement spline interpolation algorithm based on scene object's path
 //	-> interpolate along curve using correct inputs and project result
 
@@ -54,6 +54,8 @@ void main()
 				t
 	); // LERP
 	//vec4 p = vec4(gl_TessCoord.xy, -1.0, 1.0);
+
+	//Problem- LERP function is returning straight lines or no lines, not sure where this is happening
 
 	gl_Position = uP * p;
 

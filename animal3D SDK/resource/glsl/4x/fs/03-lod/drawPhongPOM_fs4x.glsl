@@ -70,7 +70,10 @@ vec3 calcParallaxCoord(in vec3 coord, in vec3 viewVec, const int steps)
 	{
 
 		vec3 ct = mix(coord, viewVec, i*dt);
+
 		// if bh > ct.z then return that point
+		//problem- can't find how to get uTex_hm to find intersection
+
 	}
 
 	// done
