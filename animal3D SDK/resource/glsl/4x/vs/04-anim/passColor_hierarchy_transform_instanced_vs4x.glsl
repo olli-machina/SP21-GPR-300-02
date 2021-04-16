@@ -28,7 +28,7 @@
 
 #define MAX_COLORS 24
 
-// ****TO-DO: 
+// ****DONE: 
 //	-> declare hierarchy depth info in uniform block
 //	-> use hierarchy depth to select color
 
@@ -39,6 +39,8 @@ uniform ubTransformMVP {
 };
 
 uniform vec4 uColor0[MAX_COLORS];
+
+uniform int hierarchyDepthInfo;
 
 out vec4 vColor;
 
@@ -51,7 +53,7 @@ void main()
 //	gl_Position = aPosition;
 	gl_Position = uMVP[gl_InstanceID] * aPosition;
 	
-	vColor = uColor0[gl_InstanceID];
+	vColor = uColor0[hierarchyDepthInfo];
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;
