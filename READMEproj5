@@ -1,0 +1,14 @@
+Project 5 - Intro to Animation Programming
+
+Project to display GPU-based morph target animation.
+Includes skeletal animation and display, exploring forward kinematics and target animation using a vertex shader
+
+Instructions:
+Run VS and build the program. Launch the program and Animal3D will open.
+Select FILE, hover over Load Demo... , and select Animal3D Demo Plugin to launch the program.
+To operate the controls:
+Press '<' and '>'  to flip through demo modes, this will load on Demo Mode 4 which is for this project.
+Press 'j' and 'k' to change the Render Mode
+Press 'J' and 'K' to change the Render Pass between Composite and Scene
+Use left click and drag to rotate, use wasd to move around the scene. Zoom in with the mouse wheel.
+Press 'P' to reload the shaders
