@@ -78,14 +78,62 @@ inline int a3animate_updateSkeletonLocalSpace(a3_Hierarchy const* hierarchy,
 			// testing: copy base pose
 			tmpPose = *pBase;
 
-			// ****TO-DO:
+			// ****DONE:
 			// interpolate channels
+			a3_SceneObjectData interp;
+			a3real2Lerp(interp.position.v, p0->position.v, p1->position.v, u);
+			a3real2Lerp(interp.euler.v, p0->euler.v, p1->euler.v, u);
+			a3real2Lerp(interp.scale.v, p0->scale.v, p1->scale.v, u);
 
-			// ****TO-DO:
+			// ****DONE:
 			// concatenate base pose
 
-			// ****TO-DO:
+			a3real2Add(interp.position.v, tmpPose.position.v);
+			a3real2Add(interp.euler.v, tmpPose.euler.v);
+			a3real2MulComp(interp.scale.v, tmpPose.scale.v);
+
+			// ****DONE:
 			// convert to matrix
+			a3mat4 translationMat = {
+				1.0, 0.0, 0.0, 0.0,
+				0.0, 1.0, 0.0, 0.0,
+				0.0, 0.0, 1.0, 0.0,
+				interp.position.x, interp.position.y, interp.position.z, 1.0
+			};
+
+			a3mat4 scaleMat = {
+				interp.scale.x, 0.0, 0.0, 0.0,
+				0.0, interp.scale.y, 0.0, 0.0,
+				0.0, 0.0, interp.scale.z, 0.0,
+				0.0, 0.0, 0.0, 1.0
+			};
+
+			a3mat4 xRotMat = {
+				1.0, 0.0, 0.0, 0.0,
+				0.0, a3cosr(interp.euler.x), -a3sinr(interp.euler.x), 0.0,
+				0.0, a3sinr(interp.euler.x), a3cosr(interp.euler.x), 0.0,
+				0.0, 0.0, 0.0, 1.0
+			};
+
+			a3mat4 yRotMat = {
+				a3cosr(interp.euler.y), 0.0, a3sinr(interp.euler.y), 0.0,
+				0.0, 1.0, 0.0, 0.0,
+				-a3sinr(interp.euler.y), 0.0, a3cosr(interp.euler.y), 0.0,
+				0.0, 0.0, 0.0, 1.0
+			};
+
+			a3mat4 zRotMat = {
+				a3cosr(interp.euler.z), -a3sinr(interp.euler.z), 0.0, 0.0,
+				a3sinr(interp.euler.z), a3cosr(interp.euler.z), 0.0, 0.0,
+				0.0, 0.0, 1.0, 0.0,
+				0.0, 0.0, 0.0, 1.0
+			};
+
+			*localSpaceArray = translationMat;
+			a3real4x4Product(localSpaceArray, scaleMat.m, localSpaceArray);
+			a3real4x4Product(localSpaceArray, xRotMat.m, localSpaceArray);
+			a3real4x4Product(localSpaceArray, yRotMat.m, localSpaceArray);
+			a3real4x4Product(localSpaceArray, zRotMat.m, localSpaceArray);
 
 		}
 
@@ -102,8 +150,24 @@ inline int a3animate_updateSkeletonObjectSpace(a3_Hierarchy const* hierarchy,
 	{
 		// ****TO-DO: 
 		// forward kinematics
-		//a3ui32 j;
-		//a3i32 jp;
+		a3ui32 j;
+		a3i32 jp;
+
+		for (j = 0;
+			j < hierarchy->numNodes;
+			++j)
+		{
+			objectSpaceArray[j] = localSpaceArray[j];
+
+			jp = j;
+			while (hierarchy->nodes[jp].parentIndex != -1)
+			{
+				jp = hierarchy->nodes[jp].parentIndex;
+
+				a3real4x4Add(objectSpaceArray[j].m, localSpaceArray[jp].m);
+
+			}
+		}
 
 		// done
 		return 1;

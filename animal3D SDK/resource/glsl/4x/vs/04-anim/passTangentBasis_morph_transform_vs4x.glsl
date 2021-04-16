@@ -26,7 +26,7 @@
 
 #define MAX_OBJECTS 128
 
-// ****TO-DO: 
+// ****DONE: 
 //	-> declare morph target attributes
 //	-> declare and implement morph target interpolation algorithm
 //	-> declare interpolation time/param/keyframe uniform
@@ -34,11 +34,33 @@
 //		(hint: results can be stored in local variables named after the 
 //		complete tangent basis attributes provided before any changes)
 
+/*
 layout (location = 0) in vec4 aPosition;
 layout (location = 2) in vec3 aNormal;
 layout (location = 8) in vec4 aTexcoord;
 layout (location = 10) in vec3 aTangent;
 layout (location = 11) in vec3 aBitangent;
+*/
+
+// what is part of a single morph target:
+// -> position, normal, tangent
+// -> 16 availible, 16 / 3 = 5 targets (int) + texcoord
+
+// what is not part of a single morph target:
+// -> texcoord: shared because always the same in 2D
+// -> bitangent: normal x tangent
+
+struct sMorphTarget
+{
+
+	vec4 position;
+	vec3 normal; float nPad;
+	vec3 tangent; float tPad;
+
+};
+
+layout (location = 0) in sMorphTarget aMorphTarget[5];
+layout (location = 15) in vec4 aTexcoord;
 
 struct sModelMatrixStack
 {
@@ -70,6 +92,14 @@ void main()
 {
 	// DUMMY OUTPUT: directly assign input position to output position
 	//gl_Position = aPosition;
+
+	//results of morphing
+	vec4 aPosition = aMorphTarget[uIndex].position;
+	vec3 aTangent = aMorphTarget[uIndex].tangent;
+	vec3 aNormal = aMorphTarget[uIndex].normal;
+	vec3 aBitangent = cross(aNormal, aTangent);
+
+	//testing: copy the first morph target (testing only)
 	
 	sModelMatrixStack t = uModelMatrixStack[uIndex];
 	

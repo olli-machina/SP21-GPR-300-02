@@ -326,6 +326,8 @@ void a3demo_loadGeometry(a3_DemoState *demoState)
 		a3_VertexAttributeName attribName;
 		a3ui32 morphModelIndex = 0;
 
+
+
 		for (i = 0, morphAttribPtr = morphAttrib, attribName = a3attrib_user00; i < morphingModelsMaxTargets; ++i)
 			for (j = 0; j < 3; ++j, ++morphAttribPtr, ++attribName)
 				// create descriptors for position, normal and tangent
