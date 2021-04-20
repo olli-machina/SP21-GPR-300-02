@@ -1,0 +1,6 @@
+- Stained Glass
+- Cycle through glass colors and have those transitions
+- Utilize bloom to have glass effects and work with concepts of stained glass
+
+Stretch Goals:
+- Stained Glass Candle Holder
