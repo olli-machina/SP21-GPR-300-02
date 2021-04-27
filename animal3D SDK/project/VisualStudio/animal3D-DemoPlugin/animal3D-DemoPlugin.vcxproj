@@ -255,6 +255,7 @@
     <None Include="..\..\..\resource\glsl\4x\fs\03-lod\drawPhongPOM_fs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\fs\drawColorAttrib_fs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\fs\drawColorUnif_fs4x.glsl" />
+    <None Include="..\..\..\resource\glsl\4x\fs\fin\glass_fs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\gs\00-common\drawTangentBasis_gs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\gs\00-common\utilCommon_gs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\ts\03-lod\passTangentBasis_displace_tes4x.glsl" />
@@ -271,6 +272,7 @@
     <None Include="..\..\..\resource\glsl\4x\vs\02-pipeline-deferred\passClipBiased_transform_instanced_vs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\vs\02-pipeline-deferred\passTangentBasis_ubo_transform_vs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\vs\03-lod\empty_vs4x.glsl" />
+    <None Include="..\..\..\resource\glsl\4x\vs\fin\glass_vs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\vs\passColor_transform_instanced_vs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\vs\passColor_transform_vs4x.glsl" />
     <None Include="..\..\..\resource\glsl\4x\vs\passthru_transform_instanced_vs4x.glsl" />

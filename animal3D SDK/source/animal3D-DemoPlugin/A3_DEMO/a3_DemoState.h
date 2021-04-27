@@ -294,6 +294,9 @@ struct a3_DemoState
 				prog_drawTangentBasisLOD[1],				// draw tangent basis and wireframe with LOD height
 				prog_drawPhongPOM[1],						// draw Phong with parallax occlusion mapping (POM)
 				prog_drawPhongLOD[1];						// draw Phong with level-of-detail (LOD) tessellation
+			a3_DemoStateShaderProgram
+				prog_glass[1];								// basic glass shader
+
 		};
 	};
 

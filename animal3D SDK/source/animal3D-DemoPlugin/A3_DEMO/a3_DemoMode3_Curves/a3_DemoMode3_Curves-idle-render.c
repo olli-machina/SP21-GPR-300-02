@@ -337,8 +337,11 @@ void a3curves_render(a3_DemoState const* demoState, a3_DemoMode3_Curves const* d
 	//	a3demo_drawStencilTest(modelViewProjectionMat.m, viewProjectionMat.m, modelMat.m, demoState->prog_drawColorUnif, demoState->draw_unit_sphere);
 
 	// select program based on settings
+	
 	currentDemoProgram = renderProgram[renderMode];
 	a3shaderProgramActivate(currentDemoProgram->program);
+	
+	
 
 	// send shared data: 
 	//	- projection matrix
@@ -366,6 +369,7 @@ void a3curves_render(a3_DemoState const* demoState, a3_DemoMode3_Curves const* d
 	{
 		// send index as uniform and draw; all other model data is shared
 		j = currentSceneObject->sceneHierarchyIndex;
+
 		a3textureActivate(textureSet[j][0], a3tex_unit00);
 		a3textureActivate(textureSet[j][1], a3tex_unit01);
 		a3textureActivate(textureSet[j][2], a3tex_unit02);
@@ -375,6 +379,8 @@ void a3curves_render(a3_DemoState const* demoState, a3_DemoMode3_Curves const* d
 		a3shaderUniformSendFloat(a3unif_single, currentDemoProgram->uSize, 1, htScale + j);
 		a3shaderUniformSendInt(a3unif_single, currentDemoProgram->uIndex, 1, &j);
 		a3vertexDrawableRender(drawable[j]);
+
+
 	}
 
 	// stop using stencil

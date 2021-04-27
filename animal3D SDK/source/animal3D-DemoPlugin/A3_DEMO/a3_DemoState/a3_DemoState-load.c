@@ -435,6 +435,9 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 			// 03-lod
 			a3_DemoStateShader
 				empty_vs[1];
+			// final project
+			a3_DemoStateShader
+				glass_transform_vs[1];
 
 			// tessellation shaders
 			// 03-lod
@@ -476,6 +479,9 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 			// 03-lod
 			a3_DemoStateShader
 				drawPhongPOM_fs[1];
+			// final project
+			a3_DemoStateShader
+				drawGlass_fs[1];
 		};
 	} shaderList = {
 		{
@@ -502,6 +508,8 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 			{ { { 0 },	"shdr-vs:pass-clipb-trans-inst",	a3shader_vertex  ,	1,{ A3_DEMO_VS"02-pipeline-deferred/e/passClipBiased_transform_instanced_vs4x.glsl" } } },
 			// 03-lod
 			{ { { 0 },	"shdr-vs:empty",					a3shader_vertex  ,	1,{ A3_DEMO_VS"03-lod/empty_vs4x.glsl" } } }, // ****DECODE
+			// final project
+			{ { { 0 },	"shdr-vs:glass",					a3shader_vertex  ,	1,{ A3_DEMO_VS"fin/glass_vs4x.glsl" } } },
 
 			// ts
 			// 03-lod
@@ -542,6 +550,9 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 																					A3_DEMO_FS"00-common/utilCommon_fs4x.glsl",} } }, // ****DECODE
 			{ { { 0 },	"shdr-fs:draw-Phong-pom",			a3shader_fragment,	2,{ A3_DEMO_FS"03-lod/drawPhongPOM_fs4x.glsl", // ****DECODE
 																					A3_DEMO_FS"00-common/utilCommon_fs4x.glsl",} } }, // ****DECODE
+			// final project
+			{ { { 0 },	"shdr-fs:glass",					a3shader_fragment,	1,{ A3_DEMO_FS"fin/glass_fs4x.glsl" } } },
+
 		}
 	};
 	a3_DemoStateShader *const shaderListPtr = (a3_DemoStateShader *)(&shaderList), *shaderPtr;
@@ -733,6 +744,13 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.tessIso_tcs->shader);
 	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.passColor_interp_tes->shader);
 	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.drawColorAttrib_fs->shader);
+
+	// final project
+	// glass
+	currentDemoProg = demoState->prog_glass;
+	a3shaderProgramCreate(currentDemoProg->program, "prog:glass");
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.glass_transform_vs->shader);
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.drawGlass_fs->shader);
 
 
 	// activate a primitive for validation

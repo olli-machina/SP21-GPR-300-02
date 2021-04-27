@@ -112,6 +112,12 @@
     <Filter Include="Resource Files\A3_DEMO\glsl\4x\vs\03-lod">
       <UniqueIdentifier>{2aba9940-dbb2-4d8f-a534-d9a9c7967814}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\A3_DEMO\glsl\4x\fs\fin">
+      <UniqueIdentifier>{dd0936aa-7a0a-4d31-8199-77c767bc261c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\A3_DEMO\glsl\4x\vs\fin">
+      <UniqueIdentifier>{d9314d00-403a-4183-b9d4-745cc2439d51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_src_win\main_dll.c">
@@ -357,6 +363,12 @@
     </None>
     <None Include="..\..\..\resource\glsl\4x\ts\03-lod\passColor_interp_tes4x.glsl">
       <Filter>Resource Files\A3_DEMO\glsl\4x\ts\03-lod</Filter>
+    </None>
+    <None Include="..\..\..\resource\glsl\4x\fs\fin\glass_fs4x.glsl">
+      <Filter>Resource Files\A3_DEMO\glsl\4x\fs\fin</Filter>
+    </None>
+    <None Include="..\..\..\resource\glsl\4x\vs\fin\glass_vs4x.glsl">
+      <Filter>Resource Files\A3_DEMO\glsl\4x\vs\fin</Filter>
     </None>
   </ItemGroup>
 </Project>
