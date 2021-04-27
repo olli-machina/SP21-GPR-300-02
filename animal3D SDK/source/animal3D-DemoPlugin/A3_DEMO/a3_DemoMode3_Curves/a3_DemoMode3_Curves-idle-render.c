@@ -338,7 +338,7 @@ void a3curves_render(a3_DemoState const* demoState, a3_DemoMode3_Curves const* d
 
 	// select program based on settings
 	
-	currentDemoProgram = renderProgram[renderMode];
+	currentDemoProgram = demoState->prog_glass;//renderProgram[renderMode];
 	a3shaderProgramActivate(currentDemoProgram->program);
 	
 	
